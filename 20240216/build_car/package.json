@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@babylonjs/loaders": "^6.42.0",
+    "babylonjs": "^6.42.0",
+    "earcut": "^2.2.4",
+    "jquery.pep.js": "^0.6.10"
+  }
+}
