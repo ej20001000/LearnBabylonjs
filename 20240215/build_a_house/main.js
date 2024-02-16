@@ -16,7 +16,13 @@ const createScene = () => {
     // Load the sound and play it automatically once ready
     const music = new BABYLON.Sound("cello", "sounds/cellolong.wav", scene, null, { loop: true, autoplay: true });
 
-    const box = BABYLON.MeshBuilder.CreateBox("box", {});
+    const faceUV = [];
+    faceUV[0] = new BABYLON.Vector4(0.6, 0.0, 1.0, 1.0); //rear face
+    faceUV[1] = new BABYLON.Vector4(0.0, 0.0, 0.4, 1.0); //front face
+    faceUV[2] = new BABYLON.Vector4(0.4, 0, 0.6, 1.0); //right side
+    faceUV[3] = new BABYLON.Vector4(0.4, 0, 0.6, 1.0); //left side
+    
+    const box = BABYLON.MeshBuilder.CreateBox("box", { width: 2, faceUV: faceUV, wrap:true });
     const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 10, height: 10 });
     const roof = BABYLON.MeshBuilder.CreateCylinder("roof", {diameter: 1.3, height: 1.2, tessellation: 3});
 
@@ -28,12 +34,14 @@ const createScene = () => {
     roofMat.diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/environments/roof.jpg", scene);
 
     const boxMat = new BABYLON.StandardMaterial("boxMat");
-    boxMat.diffuseTexture = new BABYLON.Texture("https://www.babylonjs-payground.com/textures/floor.png");
+    boxMat.diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/environments/cubehouse.png");
 
     roof.material = roofMat;
     box.material = boxMat;
 
+    
     roof.scaling.x = 0.75;
+    roof.scaling.y = 2;
     roof.rotation.z = Math.PI / 2;
     roof.position.y = 1.22;
 
